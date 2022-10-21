@@ -66,7 +66,7 @@ const KakaoMap = forwardRef(
           width: '100%',
           height: '100%',
         }}
-        level={4}
+        level={3}
         // @ts-ignore
         onCreate={setMap}
         // @ts-ignore
@@ -74,7 +74,7 @@ const KakaoMap = forwardRef(
       >
         <MarkerClusterer
           averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-          minLevel={5} // 클러스터 할 최소 지도 레벨
+          minLevel={7} // 클러스터 할 최소 지도 레벨
         >
           {markers &&
             markers.map((marker) => (

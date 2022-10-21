@@ -1,4 +1,4 @@
-import PlaceResultCard from '@molecules/PlaceResultCard';
+import { ResultPlaceCard } from '@molecules/PlaceCard';
 import { modalStore } from '@store/modalStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { Address } from '@type/address';
@@ -17,8 +17,8 @@ const SectionContainer = styled.section`
 `;
 
 const SearchResultSection = ({ searchResult }: SearchResultSectionProps) => {
-  const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
-  const [modalOpen, setModalOpen] = useAtom(modalStore);
+  const [, setSelectedPlace] = useAtom(selectPlaceStore);
+  const [, setModalOpen] = useAtom(modalStore);
 
   const handlePlaceClick = (place: Address) => {
     setSelectedPlace(place);
@@ -28,7 +28,7 @@ const SearchResultSection = ({ searchResult }: SearchResultSectionProps) => {
     <SectionContainer>
       {searchResult &&
         searchResult.map((place) => (
-          <PlaceResultCard
+          <ResultPlaceCard
             key={place.id}
             place={place}
             handlePlaceClick={handlePlaceClick}

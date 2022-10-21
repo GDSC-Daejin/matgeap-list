@@ -22,7 +22,7 @@ const PopModalInner = styled(motion.div)`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 10px 0 0 0;
+  padding: 10px 20px 0 20px;
   height: calc(100vh - 20rem);
 `;
 const ModalHandle = styled.div`

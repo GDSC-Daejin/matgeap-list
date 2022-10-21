@@ -12,3 +12,8 @@ export type Address = {
   x: number; //경도
   y: number; //위도
 };
+export interface ApplyPlace extends Address {
+  description: string;
+  displayName: string;
+  uid: string;
+}

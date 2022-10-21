@@ -1,6 +1,6 @@
 import PlaceResultCard from '@molecules/PlaceResultCard';
 import { modalStore } from '@store/modalStore';
-import { selectLocationStore } from '@store/selectLocationStore';
+import { selectPlaceStore } from '@store/selectPlaceStore';
 import { Address } from '@type/address';
 import { useAtom } from 'jotai';
 import React from 'react';
@@ -17,7 +17,7 @@ const SectionContainer = styled.section`
 `;
 
 const SearchResultSection = ({ searchResult }: SearchResultSectionProps) => {
-  const [selectedPlace, setSelectedPlace] = useAtom(selectLocationStore);
+  const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
   const [modalOpen, setModalOpen] = useAtom(modalStore);
 
   const handlePlaceClick = (place: Address) => {

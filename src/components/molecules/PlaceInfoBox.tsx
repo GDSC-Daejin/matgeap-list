@@ -1,5 +1,8 @@
-import ClearButton from '@atoms/ClearButton';
+import { ClearButton } from '@atoms/ClearButton';
+import { userLoginStore } from '@store/userLoginStore';
 import { Address } from '@type/address';
+import { useFlow } from '@utils/stackFlow';
+import { useAtom } from 'jotai';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -38,16 +41,25 @@ const BoxHeader = styled.div`
 `;
 const BoxBody = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+const AddPlaceButton = styled.button`
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: ${({ theme }) => theme.colors.blue600};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.textS};
+  border: 1px solid ${({ theme }) => theme.colors.blue600};
 `;
 const PlaceAddress = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.textM};
   color: ${({ theme }) => theme.colors.grey800};
 `;
 const 상세보기 = styled.a`
-  font-size: ${({ theme }) => theme.fontSizes.textM};
+  font-size: ${({ theme }) => theme.fontSizes.textS};
   color: ${({ theme }) => theme.colors.blue600};
+  margin-bottom: 2px;
 `;
 const ButtonWrapper = styled.div`
   position: relative;
@@ -57,6 +69,8 @@ const ButtonWrapper = styled.div`
 `;
 
 const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
+  const [user] = useAtom(userLoginStore);
+  const { push } = useFlow();
   return (
     <BoxWrapper>
       <BoxHeader>
@@ -65,13 +79,18 @@ const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
           <ClearButton onClick={() => setInfo(null)} />
         </ButtonWrapper>
       </BoxHeader>
+      <PlaceAddress>{placeInfo.road_address_name}</PlaceAddress>
       <BoxBody>
-        <PlaceAddress>{placeInfo.road_address_name}</PlaceAddress>
         <상세보기 href={`tel:${placeInfo.phone}`}>{placeInfo.phone}</상세보기>
         <상세보기 href={placeInfo.place_url} target="_blank">
           상세보기
         </상세보기>
       </BoxBody>
+      <AddPlaceButton
+        onClick={() => (user ? push('AddPlace', {}) : alert('로그인해주세요!'))}
+      >
+        장소 추가하기
+      </AddPlaceButton>
     </BoxWrapper>
   );
 };

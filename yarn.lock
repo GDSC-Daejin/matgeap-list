@@ -953,16 +953,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gdsc-dju/styled-components@npm:^0.0.55":
-  version: 0.0.55
-  resolution: "@gdsc-dju/styled-components@npm:0.0.55"
+"@gdsc-dju/styled-components@npm:^0.0.56":
+  version: 0.0.56
+  resolution: "@gdsc-dju/styled-components@npm:0.0.56"
   peerDependencies:
     "@gdsc-dju/styled-components-theme": "*"
     react: ^18.2.0
     react-is: ^18.2.0
     react-router-dom: ^6.3.0
     styled-components: ^5.3.5
-  checksum: d6cdee52c62e870f8b5594ef03f9caa849ea9ce9169a979694bf67f5c0c896836e1deb150d9544fbcca62c46762db7d9bd8ca5bd06463006332f7ffa40b2e8ec
+  checksum: ed24a96b2afec9ff42ff9112e105224a89139892bd5d6e4062f8b1e132d6ca56b05bfc3d3303a638c557aa86eb77d058367d21719318acf5e279a23c54c96684
   languageName: node
   linkType: hard
 
@@ -1365,6 +1365,57 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stackflow/core@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@stackflow/core@npm:0.14.0"
+  dependencies:
+    react-fast-compare: ^3.2.0
+  checksum: d8968fcf14788487cb23256fdbd86482c6ab6c26e9a2f0e8f8eaa40761ec33d12e7cadffafb97d9e54f72fd50d38e7eb74e2022729de8cfacc1cef15b30b8542
+  languageName: node
+  linkType: hard
+
+"@stackflow/plugin-basic-ui@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "@stackflow/plugin-basic-ui@npm:0.14.1"
+  dependencies:
+    "@vanilla-extract/dynamic": ^2.0.2
+    "@vanilla-extract/private": ^1.0.3
+    "@vanilla-extract/recipes": ^0.2.5
+    ts-pattern: ^4.0.5
+  peerDependencies:
+    "@stackflow/core": 0
+    "@stackflow/react": 0
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: 9e0f35229e751b47e901a2c07e755a29aa54cfa48cc0ea03ea1ae158b628a283e19ce8fb03cde7760c7d7c9fe4069899e255f162dbc039eab25a12dadd9be9a2
+  languageName: node
+  linkType: hard
+
+"@stackflow/plugin-renderer-basic@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@stackflow/plugin-renderer-basic@npm:0.14.0"
+  peerDependencies:
+    "@stackflow/core": 0
+    "@stackflow/react": 0
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: be0aab8aa64f77a41f6072189f311f9ac4336a22d5aa90ea5b59845bd811adc66946acf7e3479fe856196d5a63b22244f22d64e70cd856f37e0a382074eaa0d9
+  languageName: node
+  linkType: hard
+
+"@stackflow/react@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@stackflow/react@npm:0.14.0"
+  dependencies:
+    react-fast-compare: ^3.2.0
+  peerDependencies:
+    "@stackflow/core": 0
+    "@types/react": ">=16.8.0"
+    react: ">=16.8.0"
+  checksum: 27c633ec93c5bdb3eaaad8c1212721b0ce085810102c551675245c63c5ade5fc5b18b23a4b1e7a19dd772f8ef6abc6a02abbd15984dc97727992a504238b8054
+  languageName: node
+  linkType: hard
+
 "@szmarczak/http-timer@npm:^1.1.2":
   version: 1.1.2
   resolution: "@szmarczak/http-timer@npm:1.1.2"
@@ -1673,6 +1724,31 @@ __metadata:
     "@typescript-eslint/types": 5.40.1
     eslint-visitor-keys: ^3.3.0
   checksum: b5dbf1e484ba2832ca1883ee9cf7da5967f70aa5624f3fb67f13c3be90a3770b0bb96e64ccfb0c31b5d8f80794b5727e14b6c0d8c5184634a686f0ea6e798772
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@vanilla-extract/dynamic@npm:2.0.2"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.3
+  checksum: c6f22606bce094a5682c6d842be6d6965b9448f8973eaabdaa7a7438146458c22490c1c63345f08d2226f1c95ac20731835a5140c2c18646b2c1287b65607b84
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/private@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@vanilla-extract/private@npm:1.0.3"
+  checksum: 866a71ba6804edeb0735684e7723ba78f5cf0bb40d4fb538fe6bf7d73928099e341312337b2a510ac0ce96ff8a4b39eb7f7a5fad0c842532353dd20e7278f29b
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/recipes@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "@vanilla-extract/recipes@npm:0.2.5"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: 474ab445f4166bded294d5f77e02ba9b10ec6effe08364c03396e2802848d904a2a1dd9b20466405ebda93449c5a634c2fe99cd1d12888b0f84accf4d2d72666
   languageName: node
   linkType: hard
 
@@ -4629,8 +4705,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "gdsc-matgeap@workspace:."
   dependencies:
-    "@gdsc-dju/styled-components": ^0.0.55
+    "@gdsc-dju/styled-components": ^0.0.56
     "@gdsc-dju/styled-components-theme": ^0.0.49
+    "@stackflow/core": ^0.14.0
+    "@stackflow/plugin-basic-ui": ^0.14.1
+    "@stackflow/plugin-renderer-basic": ^0.14.0
+    "@stackflow/react": ^0.14.0
     "@types/node": ^18.11.0
     "@types/react": ^18.0.17
     "@types/react-dom": ^18.0.6
@@ -7602,6 +7682,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-fast-compare@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "react-fast-compare@npm:3.2.0"
+  checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -8757,6 +8844,13 @@ __metadata:
   version: 1.3.0
   resolution: "triple-beam@npm:1.3.0"
   checksum: 7d7b77d8625fb252c126c24984a68de462b538a8fcd1de2abd0a26421629cf3527d48e23b3c2264f08f4a6c3bc40a478a722176f4d7b6a1acc154cb70c359f2b
+  languageName: node
+  linkType: hard
+
+"ts-pattern@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "ts-pattern@npm:4.0.5"
+  checksum: b1ecf36afb567ee6adbaee6e885e51775b1a390ed528589ae3bcb1e376412ed0774b54495ffca7be2a324e75268f894d34379b84388930485cf1359b30d5bc8b
   languageName: node
   linkType: hard
 

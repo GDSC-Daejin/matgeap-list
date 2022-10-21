@@ -1,15 +1,17 @@
-import Button from '@atoms/Button';
+import LoginButton from '@atoms/GoMyPageButton';
 import { Input } from '@gdsc-dju/styled-components';
 import { useGetCurrentLocation } from '@hooks/useGetCurrentLocation';
 import { useKakaoSearch } from '@hooks/useKakaoSearch';
 import KakaoMap from '@molecules/KakaoMap';
 import PopModal from '@organisms/PopModal';
-import SearchResultSection from '@organisms/SearchResultSection';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { modalStore } from '@store/modalStore';
 import { addressListStore } from '@store/searchResultsStore';
-import { selectLocationStore } from '@store/selectLocationStore';
+import { selectPlaceStore } from '@store/selectPlaceStore';
+import { isMobile } from '@utils/checkMobile';
+import { useFlow } from '@utils/stackFlow';
 import { useAtom } from 'jotai';
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
@@ -27,47 +29,54 @@ const RightBox = styled.div`
 const LeftBox = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
+  justify-content: center;
   max-width: 400px;
   box-sizing: border-box;
+  background: transparent;
   margin: 0 auto;
+  z-index: 10;
   @media (max-width: 500px) {
     flex: 0;
-    width: 100%;
-    padding: 0;
+    position: fixed;
+    top: 10px;
+    right: 0;
+    left: 0;
+    width: 100vw;
   }
+`;
+const HeaderWrapper = styled.div`
+  gap: 20px;
+  padding: 0 20px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 `;
 
 const StyledForm = styled.form`
   display: flex;
   width: 100%;
-  padding: 10px 0;
-  height: 50px;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 50px;
+  border-radius: 10px;
   @media (max-width: 500px) {
     margin-bottom: 0;
   }
 `;
 const Home = () => {
-  const [search, setSearch] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const mapRef = useRef<kakao.maps.Map>(null);
   const [searchResult] = useAtom(addressListStore);
-  const [selectedPlace, setSelectedPlace] = useAtom(selectLocationStore);
+  const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
   const [isModalOpen, setIsModalOpen] = useAtom(modalStore);
-  const { markers, extendBounds } = useKakaoSearch(search);
-
   const { currentLocation, getCurrentLocation } = useGetCurrentLocation();
-  const isMobile = window.innerWidth < 500;
+  const { push } = useFlow();
+
+  const { markers, searchPlaces } = useKakaoSearch(mapRef.current);
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
-    if (inputRef.current) {
-      setSearch(inputRef.current.value);
+    if (inputRef.current && mapRef.current) {
+      searchPlaces(inputRef.current.value, mapRef.current.getCenter());
     }
-    isMobile && setIsModalOpen(true);
+    isMobile() && setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -75,7 +84,7 @@ const Home = () => {
   }, []);
 
   return (
-    <MainContainer>
+    <AppScreen>
       {searchResult && (
         <PopModal
           isModalOpen={isModalOpen}
@@ -83,27 +92,26 @@ const Home = () => {
           searchResult={searchResult}
         />
       )}
-      <LeftBox>
-        <StyledForm onSubmit={handleSearch}>
-          <Input ref={inputRef} />
-          <Button type={'submit'}>검색</Button>
-          <button>로그인</button>
-        </StyledForm>
-        {!isMobile && searchResult && (
-          <SearchResultSection searchResult={searchResult} />
-        )}
-      </LeftBox>
-      <RightBox>
-        <KakaoMap
-          search={search}
-          selectedPlace={selectedPlace}
-          setSelectedPlace={setSelectedPlace}
-          currentLocation={currentLocation}
-          markers={markers}
-          extendBounds={extendBounds}
-        />
-      </RightBox>
-    </MainContainer>
+      <MainContainer>
+        <LeftBox>
+          <HeaderWrapper>
+            <StyledForm onSubmit={handleSearch}>
+              <Input ref={inputRef} placeholder={'지역, 지점 검색하기'} />
+            </StyledForm>
+            <LoginButton onClick={() => push('MyPage', {})} />
+          </HeaderWrapper>
+        </LeftBox>
+        <RightBox>
+          <KakaoMap
+            ref={mapRef}
+            selectedPlace={selectedPlace}
+            setSelectedPlace={setSelectedPlace}
+            currentLocation={currentLocation}
+            markers={markers}
+          />
+        </RightBox>
+      </MainContainer>
+    </AppScreen>
   );
 };
 

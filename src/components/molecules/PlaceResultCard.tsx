@@ -43,6 +43,7 @@ const LinkWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 6px;
 `;
 
 const PlaceResultCard = ({ place, handlePlaceClick }: Props) => {
@@ -51,8 +52,8 @@ const PlaceResultCard = ({ place, handlePlaceClick }: Props) => {
       <PlaceResultCardInner>
         <CategoryName>{place.category_name}</CategoryName>
         <PlaceName>{place.place_name}</PlaceName>
-        <AddressName>도로명 주소: {place.road_address_name}</AddressName>
-        <AddressName>주소: {place.address_name}</AddressName>
+        <AddressName>{place.road_address_name}</AddressName>
+        <AddressName>{place.address_name}</AddressName>
         <LinkWrapper>
           <Phone href={`tel${place.phone}`}>{place.phone}</Phone>
           <Url href={place.place_url}>자세히보기</Url>

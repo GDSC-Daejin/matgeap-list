@@ -1,4 +1,6 @@
 import ClearIcon from '@assets/ClearIcon';
+import LeftArrowIcon from '@assets/LeftArrowIcon';
+import RightArrowIcon from '@assets/RightArrowIcon';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,9 +14,6 @@ const ModalButton = styled.button`
   border-radius: 15px;
   border: 1px solid ${({ theme }) => theme.colors.grey400};
   cursor: pointer;
-  &:hover {
-    background: ${({ theme }) => theme.colors.grey200};
-  }
 `;
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -26,4 +25,17 @@ export const ClearButton = (props: IButtonProps) => {
     </ModalButton>
   );
 };
-export default ClearButton;
+export const LeftArrowButton = (props: IButtonProps) => {
+  return (
+    <ModalButton {...props}>
+      <LeftArrowIcon />
+    </ModalButton>
+  );
+};
+export const RightArrowButton = (props: IButtonProps) => {
+  return (
+    <ModalButton {...props}>
+      <RightArrowIcon />
+    </ModalButton>
+  );
+};

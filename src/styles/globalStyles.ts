@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import '@stackflow/plugin-basic-ui/index.css';
 
 window.addEventListener('resize', () => {
   let vh = window.innerHeight * 0.01;

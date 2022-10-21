@@ -1,4 +1,4 @@
 import { Address } from '@type/address';
 import { atom } from 'jotai';
 
-export const selectLocationStore = atom<Address | null>(null);
+export const selectPlaceStore = atom<Address | null>(null);

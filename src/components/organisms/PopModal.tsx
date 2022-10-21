@@ -86,7 +86,6 @@ const PopModal = ({
         ...touchStart.current,
         touchEndY: upY - touchStart.current.touchStartY,
       };
-      console.log(touchStart.current.touchStartY);
       if (
         touchStart.current.touchStartY < 300 &&
         touchStart.current.touchEndY > 120

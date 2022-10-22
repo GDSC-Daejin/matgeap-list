@@ -10,7 +10,17 @@ export const addPlace = async (
   description: string,
 ) => {
   const { uid, displayName } = user;
-  const addressArray = address.place_name.split('');
+  function addSearchArray(address: string) {
+    const 공백제거 = address.replace(' ', '');
+    const searchArray: string[] = [];
+    for (let i = 0; i < 공백제거.length; i++) {
+      for (let j = i + 1; j <= 공백제거.length; j++) {
+        searchArray.push(공백제거.slice(i, j));
+      }
+    }
+    return searchArray;
+  }
+
   await setDoc(doc(db, 'matgeaps', address.id), {
     ...address,
     uid: uid,
@@ -21,7 +31,7 @@ export const addPlace = async (
       address.category_group_name,
       address.road_address_name,
       address.place_name,
-      ...addressArray,
+      ...addSearchArray(address.place_name),
       displayName,
     ],
   });

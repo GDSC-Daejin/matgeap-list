@@ -37,6 +37,7 @@ const SearchPage = () => {
       searchHandler(inputRef.current.value);
     }
   };
+
   return (
     <LayoutContainer>
       <ContainerInner>

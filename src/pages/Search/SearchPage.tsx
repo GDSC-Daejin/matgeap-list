@@ -67,7 +67,7 @@ const SearchPage = () => {
                     place={place}
                     key={place.id}
                     onClick={() => {
-                      push('PlaceDetail', { placeId: place.id });
+                      push('SearchPlaceDetail', { placeId: place.id });
                     }}
                   />
                 ))}

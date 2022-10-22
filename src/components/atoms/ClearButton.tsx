@@ -1,18 +1,19 @@
+import React from 'react';
+
+import styled from 'styled-components';
+
 import ClearIcon from '@assets/ClearIcon';
 import LeftArrowIcon from '@assets/LeftArrowIcon';
 import RightArrowIcon from '@assets/RightArrowIcon';
-import React from 'react';
-import styled from 'styled-components';
 
 const ModalButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.colors.grey100};
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  border: 1px solid ${({ theme }) => theme.colors.grey400};
+  background: ${({ theme }) => theme.colors.background};
+  width: 25px;
+  height: 25px;
+  border: 0px solid ${({ theme }) => theme.colors.grey400};
   cursor: pointer;
 `;
 

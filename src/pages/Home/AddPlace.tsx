@@ -5,14 +5,13 @@ import styled from 'styled-components';
 
 import { addPlace } from '@apis/addPlace';
 import { TextArea } from '@gdsc-dju/styled-components';
+import { useHomeFlow } from '@src/stacks/homeStackFlow';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
 import { alertStore } from '@store/alertStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { userLoginStore } from '@store/userLoginStore';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
-
-import { useHomeFlow } from '../stacks/homeStackFlow';
 
 const PlaceInfoBox = styled.div`
   display: flex;

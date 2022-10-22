@@ -2,14 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { LeftArrowButton } from '@atoms/ClearButton';
 import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { ActivityComponentType } from '@stackflow/react';
-import { ContainerInner, LayoutContainer } from '@styles/layouts';
-
-type PlaceDetailProps = {
-  placeId: string;
-};
 
 const Blockquote = styled.blockquote`
   display: flex;
@@ -93,52 +87,56 @@ const PlaceDetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 60px;
+  margin-top: 40px;
+  background: ${({ theme }) => theme.colors.background};
 `;
 const PlaceDetailHeader = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
+const 추후출시 = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSizes.textL};
+  color: ${({ theme }) => theme.colors.grey600};
+  font-weight: 600;
+`;
 
-const PlaceDetail: ActivityComponentType<PlaceDetailProps> = ({
-  // eslint-disable-next-line react/prop-types
-  params: { placeId },
-}) => {
-  const place = useGetPlaceDetail(placeId);
-  return (
-    <AppScreen>
-      <LayoutContainer>
-        {place && (
-          <ContainerInner>
-            <PlaceDetailWrapper>
-              <PlaceDetailHeader>
-                <등록한사람>
-                  <등록한사람이름>{place.displayName}</등록한사람이름>님이
-                  등록한 맛집입니다.
-                </등록한사람>
-                <가게정보Wrapper>
-                  <가게정보Inner>
-                    <가게정보카테고리Wrapper>
-                      <가게이름>{place.place_name}</가게이름>
-                      <Category>{place.category_group_name}</Category>
-                    </가게정보카테고리Wrapper>
-                    <주소>{place.road_address_name}</주소>
-                  </가게정보Inner>
-                  <카카오맵으로이동 href={place.place_url}>
-                    카카오맵으로 이동
-                  </카카오맵으로이동>
-                </가게정보Wrapper>
-                <Blockquote>{place.description}</Blockquote>
-              </PlaceDetailHeader>
-              <hr />
-              <div>댓글</div>
-            </PlaceDetailWrapper>
-          </ContainerInner>
-        )}
-      </LayoutContainer>
-    </AppScreen>
-  );
+type Props = {
+  placeId: string;
+  back: () => void;
 };
 
-export default PlaceDetail;
+const PlaceDetailLayout = ({ placeId, back }: Props) => {
+  const place = useGetPlaceDetail(placeId);
+  return (
+    <PlaceDetailWrapper>
+      <LeftArrowButton onClick={back} />
+      {place && (
+        <PlaceDetailHeader>
+          <등록한사람>
+            <등록한사람이름>{place.displayName}</등록한사람이름>님이 등록한
+            맛집입니다.
+          </등록한사람>
+          <가게정보Wrapper>
+            <가게정보Inner>
+              <가게정보카테고리Wrapper>
+                <가게이름>{place.place_name}</가게이름>
+                <Category>{place.category_group_name}</Category>
+              </가게정보카테고리Wrapper>
+              <주소>{place.road_address_name}</주소>
+            </가게정보Inner>
+            <카카오맵으로이동 href={place.place_url}>
+              카카오맵으로 이동
+            </카카오맵으로이동>
+          </가게정보Wrapper>
+          <Blockquote>{place.description}</Blockquote>
+        </PlaceDetailHeader>
+      )}
+      <hr />
+      <추후출시>댓글 기능은 추후에 출시돼요.</추후출시>
+    </PlaceDetailWrapper>
+  );
+};
+export default PlaceDetailLayout;

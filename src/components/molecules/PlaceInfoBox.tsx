@@ -95,7 +95,7 @@ const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
         <AddPlaceButton
           onClick={() =>
             user
-              ? push('PlaceDetail', { placeId: placeInfo.id })
+              ? push('HomePlaceDetail', { placeId: placeInfo.id })
               : alert('로그인해주세요!')
           }
         >

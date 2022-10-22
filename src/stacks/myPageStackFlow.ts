@@ -1,5 +1,5 @@
+import PlaceDetail from '@pages/Home/HomePlaceDetail';
 import MyPage from '@pages/MyPage';
-import PlaceDetail from '@pages/PlaceDetail';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
 import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
 import { stackflow } from '@stackflow/react';

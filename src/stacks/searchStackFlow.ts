@@ -1,4 +1,4 @@
-import PlaceDetail from '@pages/PlaceDetail';
+import SearchPlaceDetail from '@pages/Search/SearchPlaceDetail';
 import SearchPage from '@pages/SearchPage';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
 import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
@@ -14,7 +14,7 @@ export const { Stack: SearchStack, useFlow: useSearchFlow } = stackflow({
   ],
   activities: {
     SearchPage,
-    PlaceDetail,
+    SearchPlaceDetail,
   },
   initialActivity: () => 'SearchPage',
 });

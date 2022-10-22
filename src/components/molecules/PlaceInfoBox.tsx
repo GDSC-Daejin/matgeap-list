@@ -1,10 +1,14 @@
+import React from 'react';
+
+import { useAtom } from 'jotai';
+import styled from 'styled-components';
+
 import { ClearButton } from '@atoms/ClearButton';
+import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
 import { userLoginStore } from '@store/userLoginStore';
 import { Address } from '@type/address';
-import { useFlow } from '@utils/stackFlow';
-import { useAtom } from 'jotai';
-import React from 'react';
-import styled from 'styled-components';
+
+import { useHomeFlow } from '../../stacks/homeStackFlow';
 
 type PlaceInfoBoxProps = {
   placeInfo: Address;
@@ -25,7 +29,7 @@ const BoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 6px;
 `;
 const PlaceName = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.textXxl};
@@ -53,7 +57,7 @@ const AddPlaceButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.blue600};
 `;
 const PlaceAddress = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.textM};
+  font-size: ${({ theme }) => theme.fontSizes.textS};
   color: ${({ theme }) => theme.colors.grey800};
 `;
 const 상세보기 = styled.a`
@@ -70,7 +74,8 @@ const ButtonWrapper = styled.div`
 
 const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
   const [user] = useAtom(userLoginStore);
-  const { push } = useFlow();
+  const { push } = useHomeFlow();
+  const place = useGetPlaceDetail(placeInfo.id);
   return (
     <BoxWrapper>
       <BoxHeader>
@@ -86,11 +91,26 @@ const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
           상세보기
         </상세보기>
       </BoxBody>
-      <AddPlaceButton
-        onClick={() => (user ? push('AddPlace', {}) : alert('로그인해주세요!'))}
-      >
-        장소 추가하기
-      </AddPlaceButton>
+      {place && <PlaceAddress>이미 등록된 맛집이네요!</PlaceAddress>}
+      {place ? (
+        <AddPlaceButton
+          onClick={() =>
+            user
+              ? push('PlaceDetail', { placeId: placeInfo.id })
+              : alert('로그인해주세요!')
+          }
+        >
+          댓글 남기기
+        </AddPlaceButton>
+      ) : (
+        <AddPlaceButton
+          onClick={() =>
+            user ? push('AddPlace', {}) : alert('로그인해주세요!')
+          }
+        >
+          장소 추가하기
+        </AddPlaceButton>
+      )}
     </BoxWrapper>
   );
 };

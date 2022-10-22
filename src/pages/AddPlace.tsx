@@ -1,3 +1,8 @@
+import React from 'react';
+
+import { useAtom } from 'jotai';
+import styled from 'styled-components';
+
 import { addPlace } from '@apis/addPlace';
 import { TextArea } from '@gdsc-dju/styled-components';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
@@ -5,10 +10,8 @@ import { ActivityComponentType } from '@stackflow/react';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { userLoginStore } from '@store/userLoginStore';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
-import { useFlow } from '@utils/stackFlow';
-import { useAtom } from 'jotai';
-import React from 'react';
-import styled from 'styled-components';
+
+import { useHomeFlow } from '../stacks/homeStackFlow';
 
 const PlaceInfoBox = styled.div`
   display: flex;
@@ -42,7 +45,7 @@ const AddPlaceButton = styled.button`
 const AddPlace: ActivityComponentType = () => {
   const [user] = useAtom(userLoginStore);
   const [selectedPlace] = useAtom(selectPlaceStore);
-  const { pop } = useFlow();
+  const { pop } = useHomeFlow();
   const [description, setDescription] = React.useState('');
 
   return (

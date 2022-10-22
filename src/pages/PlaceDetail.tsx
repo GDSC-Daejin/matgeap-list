@@ -1,9 +1,11 @@
+import React from 'react';
+
+import styled from 'styled-components';
+
 import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
-import React from 'react';
-import styled from 'styled-components';
 
 type PlaceDetailProps = {
   placeId: string;

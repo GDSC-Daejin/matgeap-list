@@ -1,9 +1,11 @@
+import React, { useEffect, useRef } from 'react';
+
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+
 import { useScrollBlock } from '@hooks/useScrollBlock';
 import SearchResultSection from '@organisms/SearchResultSection';
 import { Address } from '@type/address';
-import { motion } from 'framer-motion';
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
 
 const PopModalWrapper = styled(motion.div)`
   display: flex;

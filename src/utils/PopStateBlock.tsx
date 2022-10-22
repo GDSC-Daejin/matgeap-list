@@ -2,15 +2,10 @@ import { useEffect } from 'react';
 
 //뒤로가기 막기
 
-const PopStateBlock = () => {
+const PopStateBlock = ({ callback }: { callback: () => void }) => {
   useEffect(() => {
-    const preventGoBack = () => {
-      history.go(1);
-    };
-
-    history.pushState(null, '', location.href);
-    window.addEventListener('popstate', preventGoBack);
-    return () => window.removeEventListener('popstate', preventGoBack);
+    window.addEventListener('popstate', callback);
+    return () => window.removeEventListener('popstate', callback);
   }, []);
 
   return null;

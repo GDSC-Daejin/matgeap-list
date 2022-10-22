@@ -1,13 +1,14 @@
+import React from 'react';
+
+import { useAtom } from 'jotai';
+import styled from 'styled-components';
+
 import { useGetMyPlace } from '@hooks/useGetMyPlace';
 import { ReviewPlaceCard } from '@molecules/PlaceCard';
 import { googleLogin } from '@src/oauth/useGoogleOauth';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
+import { useMyPageFlow } from '@src/stacks/myPageStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
 import { ApplyPlace } from '@type/address';
-import { useFlow } from '@utils/stackFlow';
-import { useAtom } from 'jotai';
-import React from 'react';
-import styled from 'styled-components';
 
 const MyProfileImage = styled.img`
   height: 100px;
@@ -40,7 +41,7 @@ const MyPlaceSection = styled.section`
   margin: 20px 0;
 `;
 const MyPageContainerInner = styled.div`
-  margin-top: 8rem;
+  margin-top: 4rem;
 `;
 const Button = styled.button`
   padding: 10px 12px;
@@ -55,40 +56,45 @@ const Button = styled.button`
 `;
 
 const MyPage = () => {
-  const [user, setUser] = useAtom(userLoginStore);
-  const { pop } = useFlow();
+  const [user] = useAtom(userLoginStore);
+
   const myPlace = useGetMyPlace(user?.uid);
+  const { push } = useMyPageFlow();
 
   return (
-    <AppScreen>
-      <MyPageContainer>
-        <MyPageContainerInner>
-          {user ? (
-            user.photoURL && (
-              <div>
-                <MyProfileWrapper>
-                  <MyProfileImage src={user.photoURL} />
-                  <MyPageUserName>{user.displayName}</MyPageUserName>
-                  <MyPageUserData>{user.email}</MyPageUserData>
-                  <MyPageUserData>{user.phoneNumber}</MyPageUserData>
-                </MyProfileWrapper>
-                <MyPlaceSection>
-                  {myPlace &&
-                    myPlace.map((place: ApplyPlace) => (
-                      <ReviewPlaceCard place={place} key={place.id} />
-                    ))}
-                </MyPlaceSection>
-              </div>
-            )
-          ) : (
-            <MyProfileWrapper>
-              <h1>멋진 로고!</h1>
-              <Button onClick={() => googleLogin()}>로그인 버튼!</Button>
-            </MyProfileWrapper>
-          )}
-        </MyPageContainerInner>
-      </MyPageContainer>
-    </AppScreen>
+    <MyPageContainer>
+      <MyPageContainerInner>
+        {user ? (
+          user.photoURL && (
+            <div>
+              <MyProfileWrapper>
+                <MyProfileImage src={user.photoURL} />
+                <MyPageUserName>{user.displayName}</MyPageUserName>
+                <MyPageUserData>{user.email}</MyPageUserData>
+                <MyPageUserData>{user.phoneNumber}</MyPageUserData>
+              </MyProfileWrapper>
+              <MyPlaceSection>
+                {myPlace &&
+                  myPlace.map((place: ApplyPlace) => (
+                    <ReviewPlaceCard
+                      place={place}
+                      key={place.id}
+                      onClick={() => {
+                        push('PlaceDetail', { placeId: place.id });
+                      }}
+                    />
+                  ))}
+              </MyPlaceSection>
+            </div>
+          )
+        ) : (
+          <MyProfileWrapper>
+            <h1>멋진 로고!</h1>
+            <Button onClick={() => googleLogin()}>로그인 버튼!</Button>
+          </MyProfileWrapper>
+        )}
+      </MyPageContainerInner>
+    </MyPageContainer>
   );
 };
 

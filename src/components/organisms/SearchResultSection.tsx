@@ -1,10 +1,12 @@
+import React from 'react';
+
+import { useAtom } from 'jotai';
+import styled from 'styled-components';
+
 import { ResultPlaceCard } from '@molecules/PlaceCard';
 import { modalStore } from '@store/modalStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { Address } from '@type/address';
-import { useAtom } from 'jotai';
-import React from 'react';
-import styled from 'styled-components';
 
 interface SearchResultSectionProps {
   searchResult: Address[];
@@ -24,6 +26,7 @@ const SearchResultSection = ({ searchResult }: SearchResultSectionProps) => {
     setSelectedPlace(place);
     setModalOpen(false);
   };
+
   return (
     <SectionContainer>
       {searchResult &&

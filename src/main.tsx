@@ -1,7 +1,8 @@
-import { GdsThemeProvider } from '@gdsc-dju/styled-components-theme';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+
+import { GdsThemeProvider } from '@gdsc-dju/styled-components-theme';
 
 import App from './App';
 import GlobalStyles from './styles/globalStyles';

@@ -1,7 +1,8 @@
-import { Address, ApplyPlace } from '@type/address';
-import { useFlow } from '@utils/stackFlow';
 import React from 'react';
+
 import styled from 'styled-components';
+
+import { Address, ApplyPlace } from '@type/address';
 
 const PlaceResultCardWrapper = styled.div`
   box-sizing: border-box;
@@ -79,15 +80,11 @@ const ResultPlaceCard = ({ place, handlePlaceClick }: PlaceResultCardProps) => {
 
 interface ReviewPlaceCardProps {
   place: ApplyPlace;
+  onClick: () => void;
 }
-const ReviewPlaceCard = ({ place }: ReviewPlaceCardProps) => {
-  const { push } = useFlow();
+const ReviewPlaceCard = ({ place, onClick }: ReviewPlaceCardProps) => {
   return (
-    <PlaceResultCardWrapper
-      onClick={() => {
-        push('PlaceDetail', { placeId: place.id });
-      }}
-    >
+    <PlaceResultCardWrapper onClick={onClick}>
       <PlaceResultCardInner>
         <CategoryName>{place.category_name}</CategoryName>
         <PlaceName>{place.place_name}</PlaceName>

@@ -1,4 +1,8 @@
-import LoginButton from '@atoms/GoMyPageButton';
+import React, { FormEvent, useEffect, useRef } from 'react';
+
+import { useAtom } from 'jotai';
+import styled from 'styled-components';
+
 import { Input } from '@gdsc-dju/styled-components';
 import { useGetCurrentLocation } from '@hooks/useGetCurrentLocation';
 import { useKakaoSearch } from '@hooks/useKakaoSearch';
@@ -9,10 +13,8 @@ import { modalStore } from '@store/modalStore';
 import { addressListStore } from '@store/searchResultsStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { isMobile } from '@utils/checkMobile';
-import { useFlow } from '@utils/stackFlow';
-import { useAtom } from 'jotai';
-import React, { FormEvent, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+
+import { useHomeFlow } from '../stacks/homeStackFlow';
 
 const MainContainer = styled.div`
   display: flex;
@@ -67,7 +69,7 @@ const Home = () => {
   const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
   const [isModalOpen, setIsModalOpen] = useAtom(modalStore);
   const { currentLocation, getCurrentLocation } = useGetCurrentLocation();
-  const { push } = useFlow();
+  const { push } = useHomeFlow();
 
   const { markers, searchPlaces } = useKakaoSearch(mapRef.current);
 
@@ -85,20 +87,19 @@ const Home = () => {
 
   return (
     <AppScreen>
-      {searchResult && (
-        <PopModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          searchResult={searchResult}
-        />
-      )}
       <MainContainer>
+        {searchResult && (
+          <PopModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            searchResult={searchResult}
+          />
+        )}
         <LeftBox>
           <HeaderWrapper>
             <StyledForm onSubmit={handleSearch}>
               <Input ref={inputRef} placeholder={'지역, 지점 검색하기'} />
             </StyledForm>
-            <LoginButton onClick={() => push('MyPage', {})} />
           </HeaderWrapper>
         </LeftBox>
         <RightBox>

@@ -12,9 +12,8 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { modalStore } from '@store/modalStore';
 import { addressListStore } from '@store/searchResultsStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
+import { LayoutContainer } from '@styles/layouts';
 import { isMobile } from '@utils/checkMobile';
-
-import { useHomeFlow } from '../stacks/homeStackFlow';
 
 const MainContainer = styled.div`
   display: flex;
@@ -26,7 +25,7 @@ const MainContainer = styled.div`
 `;
 const RightBox = styled.div`
   display: flex;
-  flex: 2;
+  height: calc(100vh - 70px);
 `;
 const LeftBox = styled.div`
   display: flex;
@@ -69,7 +68,6 @@ const Home = () => {
   const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
   const [isModalOpen, setIsModalOpen] = useAtom(modalStore);
   const { currentLocation, getCurrentLocation } = useGetCurrentLocation();
-  const { push } = useHomeFlow();
 
   const { markers, searchPlaces } = useKakaoSearch(mapRef.current);
 
@@ -102,7 +100,7 @@ const Home = () => {
             </StyledForm>
           </HeaderWrapper>
         </LeftBox>
-        <RightBox>
+        <LayoutContainer>
           <KakaoMap
             ref={mapRef}
             selectedPlace={selectedPlace}
@@ -110,7 +108,7 @@ const Home = () => {
             currentLocation={currentLocation}
             markers={markers}
           />
-        </RightBox>
+        </LayoutContainer>
       </MainContainer>
     </AppScreen>
   );

@@ -28,6 +28,7 @@ const MyPageContainer = styled.div`
 const MyPageUserName = styled.h1`
   color: ${({ theme }) => theme.colors.blue600};
   font-size: ${({ theme }) => theme.fontSizes.textXxl};
+  font-weight: 600;
 `;
 const MyPageUserData = styled.span`
   color: ${({ theme }) => theme.colors.grey700};
@@ -42,6 +43,11 @@ const MyPlaceSection = styled.section`
 `;
 const MyPageContainerInner = styled.div`
   margin-top: 4rem;
+`;
+const MyPageTitle = styled.h2`
+  margin-top: 4rem;
+  font-size: ${({ theme }) => theme.fontSizes.textXxl};
+  font-weight: 600;
 `;
 const Button = styled.button`
   padding: 10px 12px;
@@ -73,6 +79,7 @@ const MyPage = () => {
                 <MyPageUserData>{user.email}</MyPageUserData>
                 <MyPageUserData>{user.phoneNumber}</MyPageUserData>
               </MyProfileWrapper>
+              <MyPageTitle>내가 등록한 맛집 리스트</MyPageTitle>
               <MyPlaceSection>
                 {myPlace &&
                   myPlace.map((place: ApplyPlace) => (

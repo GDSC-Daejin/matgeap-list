@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
+
+import { collection, getDocs, query, where } from 'firebase/firestore';
+
 import { db } from '@src/firebase/firebase';
 import { ApplyPlace } from '@type/address';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 
 export const useGetMyPlace = (uid: string | undefined) => {
   const [myPlace, setMyPlace] = useState<unknown>([]);

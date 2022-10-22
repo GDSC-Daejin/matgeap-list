@@ -5,10 +5,9 @@ import styled from 'styled-components';
 
 import { ClearButton } from '@atoms/ClearButton';
 import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
+import { useHomeFlow } from '@src/stacks/homeStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
 import { Address } from '@type/address';
-
-import { useHomeFlow } from '../../stacks/homeStackFlow';
 
 type PlaceInfoBoxProps = {
   placeInfo: Address;

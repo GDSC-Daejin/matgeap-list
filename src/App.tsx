@@ -1,16 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 
 import BottomNavigation from '@organisms/BottomNavigation';
-import SearchPage from '@pages/SearchPage';
 import GetUserData from '@src/oauth/GetUserData';
 
+import { GoogleSpinner } from './components/GoogleSpinner';
 import { HomeStack } from './stacks/homeStackFlow';
 import { MyPageStack } from './stacks/myPageStackFlow';
+import { SearchStack } from './stacks/searchStackFlow';
 
 function App() {
   return (
     <>
       <GetUserData />
+      <GoogleSpinner />
       <main
         style={{
           display: 'flex',
@@ -25,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeStack />} />
           <Route path={'/my-page'} element={<MyPageStack />} />
-          <Route path={'search'} element={<SearchPage />} />
+          <Route path={'search'} element={<SearchStack />} />
         </Routes>
       </main>
       <BottomNavigation />

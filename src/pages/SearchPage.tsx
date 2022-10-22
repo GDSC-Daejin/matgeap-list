@@ -10,7 +10,6 @@ import { ContainerInner, LayoutContainer } from '@styles/layouts';
 import { ApplyPlace } from '@type/address';
 const HeaderWrapper = styled.div`
   gap: 20px;
-  padding: 0 20px;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -25,11 +24,21 @@ const StyledForm = styled.form`
     margin-bottom: 0;
   }
 `;
+const SearchPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 10px;
+`;
+const ResultCount = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.textM};
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.grey900};
+`;
 const SearchPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { searchResult, searchHandler } = useSearchPlace();
   const { push } = useSearchFlow();
-  console.log(searchResult);
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
@@ -41,23 +50,31 @@ const SearchPage = () => {
   return (
     <LayoutContainer>
       <ContainerInner>
-        <HeaderWrapper>
-          <StyledForm onSubmit={handleSearch}>
-            <Input ref={inputRef} placeholder={'지역, 지점 검색하기'} />
-          </StyledForm>
-        </HeaderWrapper>
-        <div>
-          {searchResult &&
-            searchResult.map((place: ApplyPlace) => (
-              <ReviewPlaceCard
-                place={place}
-                key={place.id}
-                onClick={() => {
-                  push('PlaceDetail', { placeId: place.id });
-                }}
-              />
-            ))}
-        </div>
+        <SearchPageContainer>
+          <HeaderWrapper>
+            <StyledForm onSubmit={handleSearch}>
+              <Input ref={inputRef} placeholder={'지디엣시 DB에서 찾아보기'} />
+            </StyledForm>
+          </HeaderWrapper>
+          {searchResult && (
+            <>
+              <ResultCount>
+                총 {searchResult.length}개의 맛집이 있어요
+              </ResultCount>
+              <section>
+                {searchResult.map((place: ApplyPlace) => (
+                  <ReviewPlaceCard
+                    place={place}
+                    key={place.id}
+                    onClick={() => {
+                      push('PlaceDetail', { placeId: place.id });
+                    }}
+                  />
+                ))}
+              </section>
+            </>
+          )}
+        </SearchPageContainer>
       </ContainerInner>
     </LayoutContainer>
   );

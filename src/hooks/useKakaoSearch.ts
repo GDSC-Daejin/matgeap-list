@@ -1,11 +1,15 @@
+import { useState } from 'react';
+
+import { useAtom } from 'jotai';
+
+import { alertStore } from '@store/alertStore';
 import { addressListStore } from '@store/searchResultsStore';
 import { Address } from '@type/address';
-import { useAtom } from 'jotai';
-import { useState } from 'react';
 
 export const useKakaoSearch = (map: kakao.maps.Map | null) => {
   const [markers, setMarkers] = useState<Address[]>([]);
   const [, setSearchResults] = useAtom(addressListStore);
+  const [, setAlert] = useAtom(alertStore);
 
   const ps = new kakao.maps.services.Places();
 
@@ -20,6 +24,13 @@ export const useKakaoSearch = (map: kakao.maps.Map | null) => {
           setSearchResults(data);
           // @ts-ignore
           setMarkers(data);
+        }
+        if (status === kakao.maps.services.Status.ZERO_RESULT) {
+          setAlert({
+            isActive: true,
+            message: '검색결과가 없어요',
+            status: 'WARNING',
+          });
         }
       },
       {

@@ -1,6 +1,3 @@
-import PlaceInfoBox from '@molecules/PlaceInfoBox';
-import { State } from '@store/userLocationStore';
-import { Address } from '@type/address';
 import { forwardRef, useEffect, useState } from 'react';
 import {
   CustomOverlayMap,
@@ -9,6 +6,10 @@ import {
   MarkerClusterer,
   ZoomControl,
 } from 'react-kakao-maps-sdk';
+
+import PlaceInfoBox from '@molecules/PlaceInfoBox';
+import { State } from '@store/userLocationStore';
+import { Address } from '@type/address';
 
 import ControlPosition = kakao.maps.ControlPosition;
 
@@ -64,7 +65,7 @@ const KakaoMap = forwardRef(
         isPanto={true}
         style={{
           width: '100%',
-          height: '100%',
+          height: 'calc(100vh - 70px)',
         }}
         level={3}
         // @ts-ignore

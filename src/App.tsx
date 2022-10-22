@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 
+import Alert from '@atoms/Alert';
 import BottomNavigation from '@organisms/BottomNavigation';
+import Star from '@pages/Star';
 import GetUserData from '@src/oauth/GetUserData';
 
 import { GoogleSpinner } from './components/GoogleSpinner';
@@ -11,6 +13,7 @@ import { SearchStack } from './stacks/searchStackFlow';
 function App() {
   return (
     <>
+      <Alert />
       <GetUserData />
       <GoogleSpinner />
       <main
@@ -27,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeStack />} />
           <Route path={'/my-page'} element={<MyPageStack />} />
+          <Route path={'/star'} element={<Star />} />
           <Route path={'search'} element={<SearchStack />} />
         </Routes>
       </main>

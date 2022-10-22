@@ -8,6 +8,7 @@ import { ReviewPlaceCard } from '@molecules/PlaceCard';
 import { googleLogin } from '@src/oauth/useGoogleOauth';
 import { useMyPageFlow } from '@src/stacks/myPageStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
+import { ContainerInner, LayoutContainer } from '@styles/layouts';
 import { ApplyPlace } from '@type/address';
 
 const MyProfileImage = styled.img`
@@ -22,16 +23,14 @@ const MyProfileWrapper = styled.div`
   align-items: center;
   gap: 6px;
 `;
-const MyPageContainer = styled.div`
-  padding: 0 20px;
-`;
+
 const MyPageUserName = styled.h1`
-  color: ${({ theme }) => theme.colors.blue600};
+  color: ${({ theme }) => theme.colors.grey900};
   font-size: ${({ theme }) => theme.fontSizes.textXxl};
   font-weight: 600;
 `;
 const MyPageUserData = styled.span`
-  color: ${({ theme }) => theme.colors.grey700};
+  color: ${({ theme }) => theme.colors.grey600};
   font-size: ${({ theme }) => theme.fontSizes.textM};
 `;
 const MyPlaceSection = styled.section`
@@ -68,18 +67,18 @@ const MyPage = () => {
   const { push } = useMyPageFlow();
 
   return (
-    <MyPageContainer>
-      <MyPageContainerInner>
+    <LayoutContainer>
+      <ContainerInner>
         {user ? (
           user.photoURL && (
-            <div>
+            <MyPageContainerInner>
               <MyProfileWrapper>
                 <MyProfileImage src={user.photoURL} />
                 <MyPageUserName>{user.displayName}</MyPageUserName>
                 <MyPageUserData>{user.email}</MyPageUserData>
                 <MyPageUserData>{user.phoneNumber}</MyPageUserData>
               </MyProfileWrapper>
-              <MyPageTitle>내가 등록한 맛집 리스트</MyPageTitle>
+              <MyPageTitle>내가 등록한 맛집리스트</MyPageTitle>
               <MyPlaceSection>
                 {myPlace &&
                   myPlace.map((place: ApplyPlace) => (
@@ -92,7 +91,7 @@ const MyPage = () => {
                     />
                   ))}
               </MyPlaceSection>
-            </div>
+            </MyPageContainerInner>
           )
         ) : (
           <MyProfileWrapper>
@@ -100,8 +99,8 @@ const MyPage = () => {
             <Button onClick={() => googleLogin()}>로그인 버튼!</Button>
           </MyProfileWrapper>
         )}
-      </MyPageContainerInner>
-    </MyPageContainer>
+      </ContainerInner>
+    </LayoutContainer>
   );
 };
 

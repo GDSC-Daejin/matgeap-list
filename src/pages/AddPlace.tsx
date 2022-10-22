@@ -7,6 +7,7 @@ import { addPlace } from '@apis/addPlace';
 import { TextArea } from '@gdsc-dju/styled-components';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
+import { alertStore } from '@store/alertStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { userLoginStore } from '@store/userLoginStore';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
@@ -18,7 +19,7 @@ const PlaceInfoBox = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  gap: 6px;
+  gap: 10px;
   margin-top: 10rem;
 `;
 const PlaceInfoName = styled.h1`
@@ -36,15 +37,15 @@ const AddPlaceButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.textS};
   border: 1px solid ${({ theme }) => theme.colors.blue600};
-  position: fixed;
-  width: calc(100% - 40px);
+  width: 100%;
+  margin-top: 10px;
   box-sizing: border-box;
-  bottom: 20px;
 `;
 
 const AddPlace: ActivityComponentType = () => {
   const [user] = useAtom(userLoginStore);
   const [selectedPlace] = useAtom(selectPlaceStore);
+  const [, setAlert] = useAtom(alertStore);
   const { pop } = useHomeFlow();
   const [description, setDescription] = React.useState('');
 
@@ -68,6 +69,11 @@ const AddPlace: ActivityComponentType = () => {
               <AddPlaceButton
                 onClick={() => {
                   addPlace(selectedPlace, user, description);
+                  setAlert({
+                    status: 'SUCCESS',
+                    message: '장소가 추가되었어요',
+                    isActive: true,
+                  });
                   pop();
                 }}
               >

@@ -10,7 +10,7 @@ export const addPlace = async (
   description: string,
 ) => {
   const { uid, displayName } = user;
-  function addSearchArray(address: string) {
+  function createSearchArray(address: string) {
     const 공백제거 = address.replace(' ', '');
     const searchArray: string[] = [];
     for (let i = 0; i < 공백제거.length; i++) {
@@ -31,7 +31,7 @@ export const addPlace = async (
       address.category_group_name,
       address.road_address_name,
       address.place_name,
-      ...addSearchArray(address.place_name),
+      ...createSearchArray(address.place_name),
       displayName,
     ],
   });

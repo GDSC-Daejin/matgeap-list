@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { useGetMyPlace } from '@hooks/useGetMyPlace';
 import { ReviewPlaceCard } from '@molecules/PlaceCard';
-import { googleLogin } from '@src/oauth/useGoogleOauth';
+import { googleLogin, googleLogout } from '@src/oauth/useGoogleOauth';
 import { useMyPageFlow } from '@src/stacks/myPageStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
@@ -48,6 +48,14 @@ const MyPageTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.textXxl};
   font-weight: 600;
 `;
+const LogoutButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSizes.textS};
+  color: ${({ theme }) => theme.colors.grey600};
+  background: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.grey600};
+  padding: 6px 10px;
+  border-radius: 10px;
+`;
 const Button = styled.button`
   padding: 10px 12px;
   border-radius: 10px;
@@ -61,7 +69,7 @@ const Button = styled.button`
 `;
 
 const MyPage = () => {
-  const [user] = useAtom(userLoginStore);
+  const [user, setUser] = useAtom(userLoginStore);
 
   const myPlace = useGetMyPlace(user?.uid);
   const { push } = useMyPageFlow();
@@ -77,10 +85,19 @@ const MyPage = () => {
                 <MyPageUserName>{user.displayName}</MyPageUserName>
                 <MyPageUserData>{user.email}</MyPageUserData>
                 <MyPageUserData>{user.phoneNumber}</MyPageUserData>
+                <LogoutButton
+                  onClick={() => {
+                    googleLogout();
+                    setUser(undefined);
+                    localStorage.removeItem('isLogin');
+                  }}
+                >
+                  로그아웃하기
+                </LogoutButton>
               </MyProfileWrapper>
               <MyPageTitle>내가 등록한 맛집리스트</MyPageTitle>
               <MyPlaceSection>
-                {myPlace &&
+                {myPlace && myPlace.length > 0 ? (
                   myPlace.map((place: ApplyPlace) => (
                     <ReviewPlaceCard
                       place={place}
@@ -89,7 +106,12 @@ const MyPage = () => {
                         push('PlaceDetail', { placeId: place.id });
                       }}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <>
+                    <MyPageUserData>등록한 맛집이 없어요</MyPageUserData>
+                  </>
+                )}
               </MyPlaceSection>
             </MyPageContainerInner>
           )

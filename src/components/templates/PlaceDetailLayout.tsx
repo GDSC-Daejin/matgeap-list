@@ -16,9 +16,9 @@ const Blockquote = styled.blockquote`
   font-size: ${({ theme }) => theme.fontSizes.textXxl};
   color: ${({ theme }) => theme.colors.blue900};
   font-weight: 600;
-  word-break: break-all;
+  word-break: keep-all;
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px 40px;
   position: relative;
   &:before {
     content: '“';

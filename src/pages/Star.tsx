@@ -9,7 +9,7 @@ const 알림 = styled.div`
   justify-content: center;
   font-size: 2rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.grey700};
+  color: ${({ theme }) => theme.colors.grey600};
 `;
 
 const Star = () => {

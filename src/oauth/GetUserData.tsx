@@ -26,8 +26,8 @@ const GetUserData = () => {
           photoURL: user.photoURL,
           uid: user.uid,
         });
-        setLoading(false);
       }
+      setLoading(false);
     });
   }, []);
 

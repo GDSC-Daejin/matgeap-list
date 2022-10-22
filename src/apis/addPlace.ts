@@ -28,10 +28,10 @@ export const addPlace = async (
     displayName: displayName,
     date: new Date(),
     search: [
-      address.category_group_name,
-      address.road_address_name,
-      address.place_name,
       ...createSearchArray(address.place_name),
+      ...createSearchArray(address.road_address_name),
+      ...createSearchArray(address.category_group_name),
+      ...createSearchArray(address.category_name),
       displayName,
     ],
   });

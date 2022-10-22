@@ -1,10 +1,11 @@
-import { auth, provider } from '@src/firebase/firebase';
 import {
   browserLocalPersistence,
   setPersistence,
   signInWithRedirect,
   signOut,
 } from 'firebase/auth';
+
+import { auth, provider } from '@src/firebase/firebase';
 
 export const googleLogin = async () => {
   await setPersistence(auth, browserLocalPersistence);

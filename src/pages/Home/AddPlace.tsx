@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
 import { addPlace } from '@apis/addPlace';
+import { LeftArrowButton } from '@atoms/ClearButton';
 import { TextArea } from '@gdsc-dju/styled-components';
 import { useHomeFlow } from '@src/stacks/homeStackFlow';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
@@ -54,6 +55,7 @@ const AddPlace: ActivityComponentType = () => {
         <ContainerInner>
           {user && selectedPlace && (
             <PlaceInfoBox>
+              <LeftArrowButton onClick={() => pop()} />
               <PlaceInfoAddressName>
                 {selectedPlace.category_group_name}
               </PlaceInfoAddressName>

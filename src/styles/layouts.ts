@@ -4,6 +4,8 @@ export const LayoutContainer = styled.div`
   position: relative;
   width: 100%;
   max-height: calc(100vh - 70px);
+  max-height: -moz-calc(100vh - 70px);
+  max-height: -webkit-calc(100vh - 70px);
   overflow: scroll;
   max-width: 1140px;
   margin: 0 auto;

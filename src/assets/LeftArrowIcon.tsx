@@ -3,9 +3,9 @@ import React from 'react';
 const LeftArrowIcon = () => {
   return (
     <svg
-      width="9"
-      height="13"
-      viewBox="0 0 9 13"
+      width="18"
+      height="26"
+      viewBox="0 0 18 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

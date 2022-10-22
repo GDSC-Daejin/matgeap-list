@@ -11,8 +11,7 @@ const ModalButton = styled.button`
   justify-content: center;
   align-items: center;
   background: ${({ theme }) => theme.colors.background};
-  width: 25px;
-  height: 25px;
+  width: fit-content;
   border: 0px solid ${({ theme }) => theme.colors.grey400};
   cursor: pointer;
 `;

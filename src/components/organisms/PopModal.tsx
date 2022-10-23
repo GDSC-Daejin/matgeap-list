@@ -109,12 +109,14 @@ const PopModal = ({ isModalOpen, setIsModalOpen, searchResult }: Props) => {
       transition={{ type: 'spring', damping: 40, stiffness: 300 }}
       animate={isModalOpen ? 'visible' : 'closed'}
     >
+      <PopModalInner
+        onTouchStart={touchStartHandler}
+        onTouchMove={touchMoveHandler}
+        onTouchEnd={touchEndHandler}
+      >
+        <ModalHandle />
+      </PopModalInner>
       <PopModalInner>
-        <ModalHandle
-          onTouchStart={touchStartHandler}
-          onTouchMove={touchMoveHandler}
-          onTouchEnd={touchEndHandler}
-        />
         {searchResult && <SearchResultSection searchResult={searchResult} />}
       </PopModalInner>
     </PopModalWrapper>

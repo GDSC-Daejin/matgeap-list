@@ -4,7 +4,6 @@ import {
   Map,
   MapMarker,
   MarkerClusterer,
-  ZoomControl,
 } from 'react-kakao-maps-sdk';
 
 import PlaceInfoBox from '@molecules/PlaceInfoBox';
@@ -72,7 +71,6 @@ const KakaoMap = forwardRef(
         // @ts-ignore
         ref={ref}
       >
-        <ZoomControl position={ControlPosition.BOTTOMRIGHT} />
         <MarkerClusterer
           averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
           minLevel={7} // 클러스터 할 최소 지도 레벨

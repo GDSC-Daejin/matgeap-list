@@ -3,8 +3,8 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
+import { useGetPlaceDetail } from '@apis/useGetPlaceDetail';
 import { ClearButton } from '@atoms/ClearButton';
-import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
 import { useFlow } from '@src/stacks/homeStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
 import { Address } from '@type/address';

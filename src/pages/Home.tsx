@@ -3,9 +3,9 @@ import React, { FormEvent, useEffect, useRef } from 'react';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
+import { useGetCurrentLocation } from '@apis/useGetCurrentLocation';
+import { useKakaoSearch } from '@apis/useKakaoSearch';
 import { Input } from '@gdsc-dju/styled-components';
-import { useGetCurrentLocation } from '@hooks/useGetCurrentLocation';
-import { useKakaoSearch } from '@hooks/useKakaoSearch';
 import KakaoMap from '@molecules/KakaoMap';
 import PopModal from '@organisms/PopModal';
 import { AppScreen } from '@stackflow/plugin-basic-ui';

@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 
-import { useSearchPlace } from '@hooks/useSearchPlace';
+import { useSearchPlace } from '@apis/useSearchPlace';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
 import { SearchLayout } from '@templates/Search';
 
@@ -15,11 +16,13 @@ const Search = () => {
   };
 
   return (
-    <LayoutContainer>
-      <ContainerInner>
-        <SearchLayout searchHandler={searchHandler} result={searchResult} />
-      </ContainerInner>
-    </LayoutContainer>
+    <AppScreen>
+      <LayoutContainer>
+        <ContainerInner>
+          <SearchLayout searchHandler={searchHandler} result={searchResult} />
+        </ContainerInner>
+      </LayoutContainer>
+    </AppScreen>
   );
 };
 

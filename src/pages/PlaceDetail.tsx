@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
+import { useGetPlaceDetail } from '@apis/useGetPlaceDetail';
 import { useFlow } from '@src/stacks/homeStackFlow';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';

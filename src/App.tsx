@@ -1,10 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { useAtom } from 'jotai';
+
 import Alert from '@atoms/Alert';
 import BottomNavigation from '@organisms/BottomNavigation';
 import Star from '@pages/Star';
 import GetUserData from '@src/oauth/GetUserData';
+import { modalStore } from '@store/modalStore';
+import { addressListStore } from '@store/searchResultsStore';
 
 import { GoogleSpinner } from './components/GoogleSpinner';
 import { HomeStack } from './stacks/homeStackFlow';
@@ -12,6 +16,9 @@ import { MyPageStack } from './stacks/myPageStackFlow';
 import { SearchStack } from './stacks/searchStackFlow';
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useAtom(modalStore);
+  const [result] = useAtom(addressListStore);
+
   return (
     <>
       <Alert />

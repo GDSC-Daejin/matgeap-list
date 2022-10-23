@@ -16,7 +16,9 @@ const PopModalWrapper = styled(motion.div)`
   bottom: 0;
   border-radius: 20px 20px 0 0;
   border: 1px solid ${({ theme }) => theme.colors.blue600};
+  padding-bottom: 20px;
   height: calc(100vh - 70px);
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.background};
 `;
 const PopModalInner = styled(motion.div)`
@@ -24,9 +26,13 @@ const PopModalInner = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-height: calc(100vh - 17rem);
   box-sizing: border-box;
-  padding: 6px 20px 0 20px;
+  padding: 6px 20px 20px 20px;
+`;
+const SectionWrapper = styled(motion.div)`
+  height: calc(100vh - 100px - 60px - 70px);
+  overflow: hidden;
+  padding: 0 20px;
 `;
 const ModalHandle = styled.div`
   display: flex;
@@ -40,10 +46,10 @@ const ModalHandle = styled.div`
 
 const modalVariants = {
   initial: {
-    y: window.innerHeight - 90,
+    y: window.innerHeight - 80,
   },
   closed: {
-    y: window.innerHeight - 90,
+    y: window.innerHeight - 80,
   },
   visible: {
     y: 100,
@@ -86,7 +92,7 @@ const PopModal = ({ isModalOpen, setIsModalOpen, searchResult }: Props) => {
       ...touchStart.current,
       touchEndY: upY - touchStart.current.touchStartY,
     };
-    if (touchStart.current.touchEndY - touchStart.current.touchStartY > 40) {
+    if (touchStart.current.touchEndY - touchStart.current.touchStartY > 20) {
       setIsModalOpen(false);
     }
     if (touchStart.current.touchEndY - touchStart.current.touchStartY < 40) {
@@ -116,9 +122,9 @@ const PopModal = ({ isModalOpen, setIsModalOpen, searchResult }: Props) => {
       >
         <ModalHandle />
       </PopModalInner>
-      <PopModalInner>
+      <SectionWrapper>
         {searchResult && <SearchResultSection searchResult={searchResult} />}
-      </PopModalInner>
+      </SectionWrapper>
     </PopModalWrapper>
   );
 };

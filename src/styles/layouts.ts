@@ -3,11 +3,15 @@ import styled from 'styled-components';
 export const LayoutContainer = styled.div`
   position: relative;
   width: 100%;
+
+  height: calc(100vh - 70px);
+  height: -moz-calc(100vh - 70px);
+  height: -webkit-calc(100vh - 70px);
   max-height: calc(100vh - 70px);
   max-height: -moz-calc(100vh - 70px);
   max-height: -webkit-calc(100vh - 70px);
-  // max-height: calc(var(--vh, 100) - 70px);
-  overflow: hidden;
+  // height: calc(var(--vh, 100) - 70px);
+  overflow: scroll;
   max-width: 1140px;
   margin: 0 auto;
   min-width: 320px;

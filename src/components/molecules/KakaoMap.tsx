@@ -63,7 +63,7 @@ const KakaoMap = forwardRef(
         isPanto={true}
         style={{
           width: '100%',
-          height: 'calc(100vh - 80px)',
+          height: 'calc(100vh - 70px)',
         }}
         level={3}
         // @ts-ignore

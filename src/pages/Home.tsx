@@ -29,6 +29,14 @@ const InputHeader = styled.div`
   left: 0;
   width: 100vw;
 `;
+const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+`;
+
 const HeaderWrapper = styled.div`
   gap: 20px;
   padding: 0 20px;
@@ -87,7 +95,7 @@ const Home = () => {
 
   return (
     <AppScreen>
-      <LayoutContainer>
+      <HomeContainer>
         <PopModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
@@ -111,7 +119,7 @@ const Home = () => {
             markers={result}
           />
         </LayoutContainer>
-      </LayoutContainer>
+      </HomeContainer>
     </AppScreen>
   );
 };

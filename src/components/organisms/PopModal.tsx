@@ -86,10 +86,10 @@ const PopModal = ({ isModalOpen, setIsModalOpen, searchResult }: Props) => {
       ...touchStart.current,
       touchEndY: upY - touchStart.current.touchStartY,
     };
-    if (touchStart.current.touchEndY - touchStart.current.touchStartY > 60) {
+    if (touchStart.current.touchEndY - touchStart.current.touchStartY > 40) {
       setIsModalOpen(false);
     }
-    if (touchStart.current.touchEndY - touchStart.current.touchStartY < 60) {
+    if (touchStart.current.touchEndY - touchStart.current.touchStartY < 40) {
       setIsModalOpen(true);
     }
   };

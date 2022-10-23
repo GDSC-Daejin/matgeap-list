@@ -10,13 +10,13 @@ import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyBLOzdSqylXeqU60lhFaIn0KktTJMuXFFY',
-  authDomain: 'gdsc-matgeap.firebaseapp.com',
-  projectId: 'gdsc-matgeap',
-  storageBucket: 'gdsc-matgeap.appspot.com',
-  messagingSenderId: '1038326749273',
-  appId: '1:1038326749273:web:12340e5f52a822ad603948',
-  measurementId: 'G-CDB2R26K4J',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APPID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 export const provider = new GoogleAuthProvider();

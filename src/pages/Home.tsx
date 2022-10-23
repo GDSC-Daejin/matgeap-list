@@ -50,7 +50,7 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 48px;
   font-size: ${({ theme }) => theme.fontSizes.textM};
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.colors.blue600};

@@ -8,11 +8,10 @@ import { SearchLayout } from '@templates/Search';
 const Search = () => {
   const { searchResult, searchHandler: search } = useSearchPlace();
 
-  const searchHandler = (e: FormEvent, input: HTMLInputElement | null) => {
+  const searchHandler = (e: FormEvent, input: string) => {
     e.preventDefault();
-    if (input) {
-      search(input.value);
-    }
+
+    search(input);
   };
 
   return (

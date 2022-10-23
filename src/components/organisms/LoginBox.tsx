@@ -3,19 +3,27 @@ import React from 'react';
 import styled from 'styled-components';
 
 import GdscLogo from '@assets/GDSCLogo.svg';
+import Google from '@assets/GoogleLogo.svg';
 import { googleLogin } from '@src/oauth/useGoogleOauth';
 
 const Button = styled.button`
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: ${({ theme }) => theme.colors.blue600};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.textM};
+  padding: 16px 40px;
+  border-radius: 30px;
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.grey900};
+  font-size: ${({ theme }) => theme.fontSizes.textL};
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
   border: 1px solid ${({ theme }) => theme.colors.blue600};
-  width: calc(100%);
   white-space: nowrap;
   box-sizing: border-box;
   margin-bottom: 40px;
+`;
+const GoogleLogo = styled.img`
+  height: 24px;
 `;
 const MyProfileWrapper = styled.div`
   display: flex;
@@ -31,7 +39,7 @@ const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 `;
 const Logo = styled.img`
   width: 10rem;
@@ -46,10 +54,13 @@ const LoginBox = () => {
   return (
     <MyProfileWrapper>
       <LogoWrapper>
-        <Title>GDSC Matgeap</Title>
+        <Title>Matgeap</Title>
         <Logo src={GdscLogo} />
       </LogoWrapper>
-      <Button onClick={() => googleLogin()}>구글 로그인</Button>
+      <Button onClick={() => googleLogin()}>
+        <GoogleLogo src={Google} />
+        Google로 시작하기
+      </Button>
     </MyProfileWrapper>
   );
 };

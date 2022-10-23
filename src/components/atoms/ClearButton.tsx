@@ -18,6 +18,9 @@ const ModalButton = styled.button`
 const Logo = styled.img<{ height: string; width: string }>`
   height: ${({ height }) => height};
   width: ${({ width }) => width};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -32,7 +35,7 @@ export const ClearButton = (props: IButtonProps) => {
 export const LeftArrowButton = (props: IButtonProps) => {
   return (
     <ModalButton {...props}>
-      <Logo src={LeftArrowIcon} height={'30px'} width={'auto'} />
+      <Logo src={LeftArrowIcon} height={'20px'} width={'auto'} />
     </ModalButton>
   );
 };

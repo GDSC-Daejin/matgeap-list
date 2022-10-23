@@ -27,7 +27,7 @@ const RightBox = styled.div`
   display: flex;
   height: calc(100vh - 70px);
 `;
-const LeftBox = styled.div`
+const InputHeader = styled.div`
   display: flex;
   justify-content: center;
   box-sizing: border-box;
@@ -89,13 +89,13 @@ const Home = () => {
             searchResult={searchResult}
           />
         )}
-        <LeftBox>
+        <InputHeader>
           <HeaderWrapper>
             <StyledForm onSubmit={handleSearch}>
               <Input ref={inputRef} placeholder={'지역, 지점 검색하기'} />
             </StyledForm>
           </HeaderWrapper>
-        </LeftBox>
+        </InputHeader>
         <LayoutContainer>
           <KakaoMap
             ref={mapRef}

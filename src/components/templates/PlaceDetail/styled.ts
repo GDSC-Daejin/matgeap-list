@@ -82,17 +82,19 @@ export const PlaceDetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 30px;
   background: ${({ theme }) => theme.colors.background};
 `;
 export const PlaceDetailHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 `;
 export const 추후출시 = styled.div`
   width: 100%;
   text-align: center;
+  align-self: center;
+  height: 300px;
   font-size: ${({ theme }) => theme.fontSizes.textXl};
   color: ${({ theme }) => theme.colors.grey600};
   font-weight: 500;
@@ -101,4 +103,10 @@ export const Phone = styled.a`
   font-size: ${({ theme }) => theme.fontSizes.textS};
   margin-bottom: 2px;
   color: ${({ theme }) => theme.colors.blue900};
+`;
+export const MapWrapper = styled.div`
+  width: 100%;
+  height: 350px;
+  border-radius: 10px;
+  overflow: hidden;
 `;

@@ -20,6 +20,12 @@ const AddPlace: ActivityComponentType = () => {
   const addPlaceHandler = async (input: HTMLTextAreaElement | null) => {
     if (!user || !selectedPlace || !input) return;
     addPlace(selectedPlace, user, input.value);
+    pop();
+    setAlert({
+      message: '장소가 추가되었어요',
+      status: 'SUCCESS',
+      isActive: true,
+    });
   };
 
   useEffect(() => {

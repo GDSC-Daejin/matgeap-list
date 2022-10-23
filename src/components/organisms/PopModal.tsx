@@ -50,16 +50,13 @@ type TouchEvent = {
   touchEndY: number;
   isTouched: boolean;
 };
-
-const PopModal = ({
-  isModalOpen,
-  setIsModalOpen,
-  searchResult,
-}: {
+type Props = {
   isModalOpen: boolean;
   setIsModalOpen: (test: boolean) => void;
   searchResult: Address[];
-}) => {
+};
+
+const PopModal = ({ isModalOpen, setIsModalOpen, searchResult }: Props) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const touchStart = useRef<TouchEvent>({

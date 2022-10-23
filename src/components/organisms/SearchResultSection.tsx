@@ -8,9 +8,9 @@ import { modalStore } from '@store/modalStore';
 import { selectPlaceStore } from '@store/selectPlaceStore';
 import { Address } from '@type/address';
 
-interface SearchResultSectionProps {
+type Props = {
   searchResult: Address[];
-}
+};
 
 const SectionContainer = styled.section`
   height: calc(100vh - 100px);
@@ -18,7 +18,7 @@ const SectionContainer = styled.section`
   width: 100%;
 `;
 
-const SearchResultSection = ({ searchResult }: SearchResultSectionProps) => {
+const SearchResultSection = ({ searchResult }: Props) => {
   const [, setSelectedPlace] = useAtom(selectPlaceStore);
   const [, setModalOpen] = useAtom(modalStore);
 

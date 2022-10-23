@@ -24,11 +24,11 @@ const Notice = styled.span`
   color: ${({ theme }) => theme.colors.grey500};
 `;
 
-type PlaceSectionProps = {
+type Props = {
   places: ApplyPlace[];
 };
 
-const PlaceSection = ({ places }: PlaceSectionProps) => {
+const PlaceSection = ({ places }: Props) => {
   const { push } = useFlow();
   return (
     <MyPlaceSection>

@@ -8,7 +8,7 @@ import * as S from './styled';
 import { Button, CountButtonWrapper } from './styled';
 
 type Props = {
-  result: ApplyPlace[];
+  result: ApplyPlace[] | null;
   searchHandler: (e: FormEvent, input: string) => void;
 };
 

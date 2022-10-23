@@ -1,4 +1,5 @@
-import { Address } from '@type/address';
 import { atom } from 'jotai';
 
-export const addressListStore = atom<Address[] | null>(null);
+import { ApplyPlace } from '@type/address';
+
+export const addressListStore = atom<ApplyPlace[] | null>(null);

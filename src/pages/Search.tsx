@@ -10,7 +10,6 @@ const Search = () => {
 
   const searchHandler = (e: FormEvent, input: string) => {
     e.preventDefault();
-
     search(input);
   };
 

@@ -7,7 +7,7 @@ export const LayoutContainer = styled.div`
   max-height: -moz-calc(100vh - 70px);
   max-height: -webkit-calc(100vh - 70px);
   // max-height: calc(var(--vh, 100) - 70px);
-  overflow: scroll;
+  overflow: hidden;
   max-width: 1140px;
   margin: 0 auto;
   min-width: 320px;

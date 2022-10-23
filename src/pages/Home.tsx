@@ -3,8 +3,8 @@ import React, { FormEvent, useEffect, useRef } from 'react';
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 
-import { useGetCurrentLocation } from '@apis/useGetCurrentLocation';
 import { useKakaoSearch } from '@apis/useKakaoSearch';
+import { useSearchPlace } from '@apis/useSearchPlace';
 import { Input } from '@gdsc-dju/styled-components';
 import KakaoMap from '@molecules/KakaoMap';
 import PopModal from '@organisms/PopModal';
@@ -15,18 +15,6 @@ import { selectPlaceStore } from '@store/selectPlaceStore';
 import { LayoutContainer } from '@styles/layouts';
 import { isMobile } from '@utils/checkMobile';
 
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-const RightBox = styled.div`
-  display: flex;
-  height: calc(100vh - 70px);
-`;
 const InputHeader = styled.div`
   display: flex;
   justify-content: center;
@@ -46,6 +34,7 @@ const HeaderWrapper = styled.div`
   padding: 0 20px;
   display: flex;
   width: 100%;
+  align-items: center;
   flex-direction: row;
 `;
 
@@ -57,15 +46,28 @@ const StyledForm = styled.form`
     margin-bottom: 0;
   }
 `;
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: ${({ theme }) => theme.fontSizes.textM};
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.blue600};
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+`;
 const Home = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const mapRef = useRef<kakao.maps.Map>(null);
-  const [searchResult] = useAtom(addressListStore);
+  const [result, setResult] = useAtom(addressListStore);
   const [selectedPlace, setSelectedPlace] = useAtom(selectPlaceStore);
   const [isModalOpen, setIsModalOpen] = useAtom(modalStore);
-  const { currentLocation, getCurrentLocation } = useGetCurrentLocation();
 
-  const { markers, searchPlaces } = useKakaoSearch(mapRef.current);
+  const { searchHandler } = useSearchPlace();
+
+  const { searchPlaces } = useKakaoSearch();
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
@@ -76,24 +78,29 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getCurrentLocation();
+    if (result === null) {
+      (async () => {
+        await searchHandler(undefined);
+      })();
+    }
   }, []);
 
   return (
     <AppScreen>
-      <MainContainer>
-        {searchResult && (
-          <PopModal
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            searchResult={searchResult}
-          />
-        )}
+      <LayoutContainer>
+        <PopModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          searchResult={result}
+        />
         <InputHeader>
           <HeaderWrapper>
             <StyledForm onSubmit={handleSearch}>
               <Input ref={inputRef} placeholder={'지역, 지점 검색하기'} />
             </StyledForm>
+            <StyledButton onClick={() => searchHandler(undefined)}>
+              지디엣시 DB보기
+            </StyledButton>
           </HeaderWrapper>
         </InputHeader>
         <LayoutContainer>
@@ -101,11 +108,10 @@ const Home = () => {
             ref={mapRef}
             selectedPlace={selectedPlace}
             setSelectedPlace={setSelectedPlace}
-            currentLocation={currentLocation}
-            markers={markers}
+            markers={result}
           />
         </LayoutContainer>
-      </MainContainer>
+      </LayoutContainer>
     </AppScreen>
   );
 };

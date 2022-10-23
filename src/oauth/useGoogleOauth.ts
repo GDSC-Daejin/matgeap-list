@@ -8,6 +8,7 @@ import {
 import { auth, provider } from '@src/firebase/firebase';
 
 export const googleLogin = async () => {
+  await localStorage.setItem('isLogin', 'true');
   await setPersistence(auth, browserLocalPersistence);
   await signInWithRedirect(auth, provider);
 };

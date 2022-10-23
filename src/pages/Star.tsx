@@ -9,13 +9,13 @@ const 알림 = styled.div`
   justify-content: center;
   font-size: 2rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.grey600};
+  color: ${({ theme }) => theme.colors.grey500};
 `;
 
 const Star = () => {
   return (
     <div>
-      <알림>추후 출시됩니다!</알림>
+      <알림>즐겨찾기는 추후 추가될 예정이에요</알림>
     </div>
   );
 };

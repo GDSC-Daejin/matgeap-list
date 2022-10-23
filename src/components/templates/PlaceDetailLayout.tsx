@@ -102,6 +102,11 @@ const 추후출시 = styled.div`
   color: ${({ theme }) => theme.colors.grey600};
   font-weight: 600;
 `;
+const Phone = styled.a`
+  font-size: ${({ theme }) => theme.fontSizes.textS};
+  margin-bottom: 2px;
+  color: ${({ theme }) => theme.colors.blue900};
+`;
 
 type Props = {
   placeId: string;
@@ -126,6 +131,7 @@ const PlaceDetailLayout = ({ placeId, back }: Props) => {
                 <Category>{place.category_group_name}</Category>
               </가게정보카테고리Wrapper>
               <주소>{place.road_address_name}</주소>
+              <Phone href={`tel:${place.phone}`}>{place.phone}</Phone>
             </가게정보Inner>
             <카카오맵으로이동 href={place.place_url}>
               카카오맵으로 이동

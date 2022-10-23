@@ -693,10 +693,10 @@
   resolved "https://registry.yarnpkg.com/@gdsc-dju/styled-components-theme/-/styled-components-theme-0.0.49.tgz#847ee0e04c3f069bae3d7bf64fd2f254f1ac5cd0"
   integrity sha512-hnfHzdwpohSX08KrznESAhRUt8IHwVLl9jI9ZU1Tz4GEsb0sP68aIy0syJYP7UXry4r/xfkvvwR5j3oVSb9MxA==
 
-"@gdsc-dju/styled-components@^0.0.56":
-  version "0.0.56"
-  resolved "https://registry.yarnpkg.com/@gdsc-dju/styled-components/-/styled-components-0.0.56.tgz#33e8ddec43d2bb2d49b1779dc737133b240d60ee"
-  integrity sha512-1y5RY/yUSEyxgt7WjjxgFJZMvJYNCmfuW9j2xMFnCxNqB0PypLvqe9pI5WTSmxkqy0VtA8VtSF9/pqsea1jjkQ==
+"@gdsc-dju/styled-components@^0.0.58":
+  version "0.0.58"
+  resolved "https://registry.yarnpkg.com/@gdsc-dju/styled-components/-/styled-components-0.0.58.tgz#17b809297cd120a8d64dc3dd0a0e6bb9edc38256"
+  integrity sha512-kwHg6+WCWqBJJ+2arX4bY9tekwOeF1JPNNkFQODUng+bJ4UNojYH4y0o0EyfQUtfPcXpCT9VdYiGHJpypBulDA==
 
 "@google-cloud/paginator@^4.0.0":
   version "4.0.1"

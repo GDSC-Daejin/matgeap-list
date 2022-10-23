@@ -11,7 +11,7 @@
     "predeploy": "yarn build"
   },
   "dependencies": {
-    "@gdsc-dju/styled-components": "^0.0.56",
+    "@gdsc-dju/styled-components": "^0.0.58",
     "@gdsc-dju/styled-components-theme": "^0.0.49",
     "@stackflow/core": "^0.14.0",
     "@stackflow/plugin-basic-ui": "^0.14.1",

@@ -70,7 +70,7 @@ const ResultPlaceCard = ({ place, handlePlaceClick }: PlaceResultCardProps) => {
         <AddressName>{place.road_address_name}</AddressName>
         <AddressName>{place.address_name}</AddressName>
         <LinkWrapper>
-          <Phone href={`tel${place.phone}`}>{place.phone}</Phone>
+          <Phone href={`tel:${place.phone}`}>{place.phone}</Phone>
           <Url href={place.place_url}>자세히보기</Url>
         </LinkWrapper>
       </PlaceResultCardInner>
@@ -90,7 +90,7 @@ const ReviewPlaceCard = ({ place, onClick }: ReviewPlaceCardProps) => {
         <PlaceName>{place.place_name}</PlaceName>
         <AddressName>{place.road_address_name}</AddressName>
         <LinkWrapper>
-          <Phone href={`tel${place.phone}`}>{place.phone}</Phone>
+          <Phone href={`tel:${place.phone}`}>{place.phone}</Phone>
         </LinkWrapper>
       </PlaceResultCardInner>
     </PlaceResultCardWrapper>

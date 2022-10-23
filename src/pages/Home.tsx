@@ -29,21 +29,17 @@ const RightBox = styled.div`
 `;
 const LeftBox = styled.div`
   display: flex;
-  flex: 1;
   justify-content: center;
-  max-width: 400px;
   box-sizing: border-box;
   background: transparent;
   margin: 0 auto;
   z-index: 10;
-  @media (max-width: 500px) {
-    flex: 0;
-    position: fixed;
-    top: 10px;
-    right: 0;
-    left: 0;
-    width: 100vw;
-  }
+  flex: 0;
+  position: fixed;
+  top: 10px;
+  right: 0;
+  left: 0;
+  width: 100vw;
 `;
 const HeaderWrapper = styled.div`
   gap: 20px;

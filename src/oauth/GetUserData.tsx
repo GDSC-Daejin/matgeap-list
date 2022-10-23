@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAtom } from 'jotai';
@@ -8,7 +8,7 @@ import { loaderStore } from '@store/loaderStore';
 import { userLoginStore } from '@store/userLoginStore';
 
 const GetUserData = () => {
-  const [, setUserData] = useAtom(userLoginStore);
+  const [user, setUserData] = useAtom(userLoginStore);
   const [, setLoading] = useAtom(loaderStore);
   useLayoutEffect(() => {
     if (localStorage.getItem('isLogin')) {
@@ -16,7 +16,6 @@ const GetUserData = () => {
     }
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        localStorage.setItem('isLogin', 'true');
         setUserData({
           // @ts-ignore
           accessToken: user.accessToken,
@@ -27,9 +26,13 @@ const GetUserData = () => {
           uid: user.uid,
         });
       }
-      setLoading(false);
     });
   }, []);
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   return null;
 };

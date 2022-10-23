@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 import { Input } from '@gdsc-dju/styled-components';
 import { useSearchPlace } from '@hooks/useSearchPlace';
-import { ReviewPlaceCard } from '@molecules/PlaceCard';
-import { useSearchFlow } from '@src/stacks/searchStackFlow';
+import PlaceSection from '@organisms/PlaceSection';
+import { useFlow } from '@src/stacks/homeStackFlow';
 import { ContainerInner, LayoutContainer } from '@styles/layouts';
-import { ApplyPlace } from '@type/address';
 const HeaderWrapper = styled.div`
   gap: 20px;
   display: flex;
@@ -35,10 +34,10 @@ const ResultCount = styled.div`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.grey900};
 `;
-const SearchPage = () => {
+const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { searchResult, searchHandler } = useSearchPlace();
-  const { push } = useSearchFlow();
+  const { push } = useFlow();
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
@@ -61,17 +60,7 @@ const SearchPage = () => {
               <ResultCount>
                 총 {searchResult.length}개의 맛집이 있어요
               </ResultCount>
-              <section>
-                {searchResult.map((place: ApplyPlace) => (
-                  <ReviewPlaceCard
-                    place={place}
-                    key={place.id}
-                    onClick={() => {
-                      push('SearchPlaceDetail', { placeId: place.id });
-                    }}
-                  />
-                ))}
-              </section>
+              <PlaceSection places={searchResult} />
             </>
           )}
         </SearchPageContainer>
@@ -80,4 +69,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default Search;

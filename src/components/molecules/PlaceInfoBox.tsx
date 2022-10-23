@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { ClearButton } from '@atoms/ClearButton';
 import { useGetPlaceDetail } from '@hooks/useGetPlaceDetail';
-import { useHomeFlow } from '@src/stacks/homeStackFlow';
+import { useFlow } from '@src/stacks/homeStackFlow';
 import { userLoginStore } from '@store/userLoginStore';
 import { Address } from '@type/address';
 
@@ -73,7 +73,7 @@ const ButtonWrapper = styled.div`
 
 const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
   const [user] = useAtom(userLoginStore);
-  const { push } = useHomeFlow();
+  const { push } = useFlow();
   const place = useGetPlaceDetail(placeInfo.id);
   return (
     <BoxWrapper>
@@ -95,7 +95,7 @@ const PlaceInfoBox = ({ placeInfo, setInfo }: PlaceInfoBoxProps) => {
         <AddPlaceButton
           onClick={() =>
             user
-              ? push('HomePlaceDetail', { placeId: placeInfo.id })
+              ? push('PlaceDetail', { placeId: placeInfo.id })
               : alert('로그인해주세요!')
           }
         >
